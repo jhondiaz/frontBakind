@@ -22,10 +22,10 @@ Requerimientos :
 
 2. Inicar la  apliacion   con el  comando `npm start`
 
-3. Para el  Login  los datos de accesos   , User : Admin  y  la  contraseña : Admin 
+3. Para el  Login  los datos de accesos   , User : `Admin`  y  la  contraseña : `Admin` 
    para el  rol de Admin. 
    
-4. Para el  Login  los datos de accesos   , User : Viewer  y  la  contraseña : Viewer 
+4. Para el  Login  los datos de accesos   , User : `Viewer`  y  la  contraseña : `Viewer` 
    para el  rol de Viewer 
 
 
