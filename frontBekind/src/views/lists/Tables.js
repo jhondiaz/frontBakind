@@ -16,10 +16,12 @@ import {
   Input,
   Form,
   UncontrolledAlert,
+  Col,
 } from "reactstrap";
 import Header from "components/Headers/Header.js";
 import React, { useEffect, useState } from "react";
 import api from "axiosConfig";
+import Category from "components/Customers/Categorys.js";
 
 const Tables = () => {
   const [refresh, setrefresh] = useState(false);
@@ -31,8 +33,8 @@ const Tables = () => {
     description: "",
     category: "",
   });
-  const [categorys, setCategorys] = useState([]);
 
+  const [categorys, setCategorys] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenAlert, setIsOpenAlert] = useState(false);
   const [isOpenEdit, setIsOpenEdit] = useState(false);
@@ -138,10 +140,9 @@ const Tables = () => {
     }
   };
 
-  const onClickfilter = async(value)  => {
-    
+  const onClickfilter = async (value) => {
     try {
-      const response = await api.get("/Product/GetProductByCategory",{
+      const response = await api.get("/Product/GetProductByCategory", {
         params: { name: value },
       });
       setProducts(response.data);
@@ -186,48 +187,25 @@ const Tables = () => {
             <Card className="shadow">
               <CardHeader className="border-0">
                 <h3 className="mb-0">Lista de Product</h3>
-
-                <label className="form-control-label" htmlFor="input-username">
-                  Categorias:
-                </label>
-                <UncontrolledDropdown>
-                  <DropdownToggle
-                    className="btn-icon-only text-right mr-6"
-                    href="#pablo"
-                    role="button"
-                    size="sm"
-                    color=""
-                    onClick={(e) => e.preventDefault()}
-                  >
-                    <i className="fas fa-ellipsis-v" />
-                  </DropdownToggle>
-                  <DropdownMenu className="dropdown-menu-arrow" right>
-                    <DropdownItem
-                      href="#pablo"
-                      onClick={(e) => onClickfilter("All")}
+                <hr/>
+                <Row>
+                  <Col>
+                    <Category
+                      categorys={categorys}
+                      handleFilter={onClickfilter}
+                    />
+                  </Col>
+                  <Col>
+                    <Button
+                      className="text-right ml-6"
+                      color="primary"
+                      type="button"
+                      onClick={onClickAdd}
                     >
-                      All
-                    </DropdownItem>
-                    {categorys.map((category) => (
-                      <DropdownItem
-                       key={category}
-                        href="#pablo"
-                        onClick={(e) => onClickfilter(category)}
-                      >
-                        {category}
-                      </DropdownItem>
-                    ))}
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-
-                <Button
-                  className="text-right ml-6"
-                  color="primary"
-                  type="button"
-                  onClick={onClickAdd}
-                >
-                  Add
-                </Button>
+                      Add
+                    </Button>
+                  </Col>
+                </Row>
                 <UncontrolledAlert
                   color="danger"
                   isOpen={isOpenAlert}
@@ -523,6 +501,7 @@ const Tables = () => {
           >
             Close
           </Button>
+
           <Button
             className="my-4"
             color="primary"
