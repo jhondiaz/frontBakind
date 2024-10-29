@@ -9,7 +9,7 @@ import {
 const Category = ({categorys, handleFilter }) => {
 
   return (
-    <div>
+    <>
       <label className="form-control-label" htmlFor="input-username">
         Categorias:
       </label>
@@ -41,7 +41,7 @@ const Category = ({categorys, handleFilter }) => {
           ))}
         </DropdownMenu>
       </UncontrolledDropdown>
-    </div>
+    </>
   );
 };
 
